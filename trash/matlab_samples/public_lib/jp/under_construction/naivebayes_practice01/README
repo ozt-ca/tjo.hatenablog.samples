@@ -1,0 +1,3 @@
+A simple Naive Bayes Classifier that maps sentences collected from a service hotline to topics. Thx to David Suendermann (www.suendermann.com) for training data.
+
+See naive_bayes_demo.m for usage.

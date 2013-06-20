@@ -22,7 +22,7 @@ class svm(object):
     """
     
     def __init__(self,
-                 kenel=lambda x,y:dot(x,y)
+                 delta=2,
                  c=1,
                  tol=0.001,
                  eps=0.04,
@@ -60,77 +60,80 @@ class svm(object):
         y1=self._ylabel[i1]
         y2=self._ylabel[i2]
         
-        e1=self._e[i1]
-        e2=self._e[i2]
+        e1=self._Es[i1]
+        e2=self._Es[i2]
         s=y1*y2
+        
+        gamma=alpha1+alpha2*s
+        
+        if s==1:
+            L=max(0, alpha1+alpha2-self._c)
+            H=min(self._c, alpha2+alpha1) 
+            
+        else:
+            L=max(0, alpha2-alpha1)
+            H=min(self._c, self._c+alpha2-alpha1)
+            
+        if L==H:
+            return null
+        
+        k11=self._Ks(i1,i1)
+        k12=self._Ks(i1,i2)
+        k22=self._Ks(i2,i2)
+        
+        eta=k11+k22-2*k12
+        
+        if eta>0:
+            a2=alpha2+y2*(e1-e2)/eta
+            a2=min(max(a2,L),H)
+        else:
+            Lobj=gamma-s*L+L-0.5*k11*(gamma-s*L)^2-0.5*k22*L^2-s*k12*(gamma-s*L)*L-y1*(gamma-s*L)
+            Hobj=gamma-s*H+H-0.5*k11*(gamma-s*H)^2-0.5*k22*H^2-s*k12*(gamma-s*H)*H-y1*(gamma-s*H)
+            if Lobj<Hobj-eps:
+                a2=L
+            elif Lobj>Hobj+eps:
+                a2=H
+            else:
+                a2=alpha2
+        
+        if abs(a2-alpha2)<eps*(a2+alpha2+eps):
+            return null
+            
+        a1=alpha1+s*(alpha2-a2)
+        
+        self._updateThreshold(i1,i2,a1,a2)
+        alpha[i1]=a1
+        alpha[i2]=a2
+        self._updateErrorList
+        
+        return 1
+    
+        
+    def _updateThreshold(self,i1,i2,a1,a2):
+        alph1=self._alpha[i1]
+        alph2=self._alpha[i2]
+        y1=self._ylabel[i1]
+        y2=self._ylabel[i2]
+        
+        e1=self._Es(i1)-y1
+        e2=self._Es(i2)-y2
+        
+        b1=e1+y1*()
+        
+    def _updateErrorList(self):
+        
+        
+    def _examEx(self,i2):
+    
+        
+    def _secondChoiceHeuristic(self,i2):
+        
         
     def main_routine(self,xlist,ylabel):
         self._xlist=xlist
         self._ylabel=ylabel
         
 
-
-def svm_classifier(label,alpha):
-    return np.dot(label,alpha) # 単なる内積 w*x
-    
-def svm_predict(xvec,wvec,x_list,delta,bias,clength):
-    wbyx = 0
-    for i in range(1,clength):
-        wbyx = wbyx + wvec[i]*kernel(xvec,x_list[:,i],delta)
-    new_m = wbyx + bias
-    if new_m > 0:
-        print "Group 1"
-    elif new_m < 0:
-        print "Group 2"
-    else:
-        print "On the border"
-    return new_m
-    
-#def svm_smo(x_list,y_list,alpha,delta,Cmax,clength,learn_stlength,loop):
-#    idx=np.random.permutation(clength) # idx is an array
-#    i1=idx[0]
-#    e_list=[0 for i in range(clength)]
-# import tjo_smo.py
-# tjo_smo.mainRoutine()
-    
-    return alpha_smo,bias
-    
-
-def kernel(x1,x2,delta):
-    norm_dat = np.linalg.norm(x1-x2)
-    abs_dat = (norm_dat)^2
-    p = (abs_dat)/(2*(delta)^2)
-    return np.exp(-p)
-
-def soft_margin(fix_v,x_var,alpha_var,y_var,delta,clength):
-    marg = 0
-    for i in range(1,clength):
-        marg = marg + (alpha_var[i]*y_var[i]*kernel(fix_v,x_var[:,i],delta))
-    return marg
-
-def Es():
-    #
-
-def Ks():
-    #
-
-def takeStep():
-    #
-
-def updateThreshold():
-    #
-
-def updateErrorList():
-    #
-
-def examEx():
-    #
-
-def secondChoiceHeuristic():
-    #
-
-def mainRoutine():
-    #
 
 
 

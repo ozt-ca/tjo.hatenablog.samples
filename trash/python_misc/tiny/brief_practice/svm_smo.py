@@ -118,7 +118,14 @@ class svm(object):
         e1=self._Es(i1)-y1
         e2=self._Es(i2)-y2
         
-        b1=e1+y1*()
+        b1=e1+y1*(a1-alph1)*self._Ks(i1,i1)+y2*(a2-alph2)*self._Ks(i1,i2)
+        b2=e2+y1*(a1-alph1)*self._Ks(i1,i2)+y2*(a2-alph2)*self._Ks(i2,i2)
+        
+        if b1==b2:
+            self._bias=b1
+        else:
+            self._bias=(b1+b2)/2
+        
         
     def _updateErrorList(self):
         

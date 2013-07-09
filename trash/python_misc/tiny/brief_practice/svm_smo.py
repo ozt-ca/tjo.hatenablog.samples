@@ -40,6 +40,8 @@ class svm(object):
         self._tol=tol
         self._eps=eps
         self._loop=loop
+        self._elist=
+        self._clength=
         
     def _Es(self,i):
         output1=self._alpha[i]+self._learn_stlength*(1-(self._ylabel[i]*smargin(self._xlist[i],self._xlist[:,],self._ylabel,self._delta,self._clength)))
@@ -128,6 +130,8 @@ class svm(object):
         
         
     def _updateErrorList(self):
+        for j in range(1,self._clength):
+            self._
         
         
     def _examEx(self,i2):
@@ -166,26 +170,30 @@ if __name__=='__main__':
     label_all=r_[label1,label2]
     
     
-    tjo_smo.mainRoutine()
-    
-    prob = svm_problem(label_all.tolist(),class_all.tolist()) #問題提起：
-    param = svm_parameter('-s 0 -t 2 -g 0.5 -c 10') #識別器のパラメータ設定 
-    model = svm_train(prob,param) #学習
-    testx = [-0.5,-0.5]
-    label = svm_predict([1,],[testx],model) #未知データの適用
+    p = class_all
+    t = label_all
+    s.main_routine(p, t)
 
-    xx,yy=meshgrid(linspace(-3,3,500), linspace(-3,3,500))
-    
-    zz=np.zeros([500,500])
-    for i in range(0,499):
-        for j in range(0,499):
-            labelc=svm_predict([1,],[[xx[i,j],yy[i,j]]],model)
-            tmp=labelc[0]
-            zz[i,j]=tmp[0]
+    for i in range(len(p)):
+        c = 'r' if t[i] > 0 else 'b'
+        plt.scatter([p[i][0]], [p[i][1]], color=c)
 
-    plt.scatter(class1[:,0],class1[:,1],marker='o',color='g',s=100)
-    plt.scatter(class2[:,0],class2[:,1],marker='s',color='b',s=100)
-    plt.scatter(testx[0],testx[1],marker='+',color='r',s=500)
-    plt.contour(xx,yy,zz)
-    print label
+    X, Y = meshgrid(arange(-2.5, 2.5, 00.1), arange(-2.5, 2.5, 00.1))
+    w, h = X.shape
+    X.resize(X.size)
+    Y.resize(Y.size)
+    Z = array([s.calc([x, y]) for (x, y) in zip(X, Y)])
+    X.resize((w, h))
+    Y.resize((w, h))
+    Z.resize((w, h))
+
+    CS = plt.contour(X, Y, Z, [0.0],
+                     colors = ('k'),
+                     linewidths = (3,),
+                     origin = 'lower')
+
+    plt.xlim(-2.5, 2.5)
+    plt.ylim(-2.5, 2.5)
     plt.show()
+
+    print s.alpha

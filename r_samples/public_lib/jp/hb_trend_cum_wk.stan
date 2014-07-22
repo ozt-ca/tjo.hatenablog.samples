@@ -24,7 +24,7 @@ model {
 	trend~normal(30,10);
 	wk~normal(500,400);
 	for (i in 8:N)
-		wk[i]~normal(wk[i-7],s_wk);
+		wk[i]~normal(wk[i-7],s_wk); // ここは微妙に謎。状態空間のテキスト読むと違うので
 	
 	for (i in 3:N)
 		trend[i]~normal(2*trend[i-1]-trend[i-2],s_trend);

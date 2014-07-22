@@ -1,15 +1,15 @@
 data {
-	int<lower=0> N;
-	real<lower=0> x1[N];
-	real<lower=0> x2[N];
-	real<lower=0> x3[N];
-	real<lower=0> y[N];
+	int<lower=0> N; // ƒTƒ“ƒvƒ‹ƒTƒCƒY
+	real<lower=0> x1[N]; // L“Š‰ºŠz1
+	real<lower=0> x2[N]; // L“Š‰ºŠz2
+	real<lower=0> x3[N]; // L“Š‰ºŠz3
+	real<lower=0> y[N]; // KPI
 }
 
 parameters {
-	real trend[N];
-	real s_trend;
-	real s_q;
+	real trend[N]; // ƒgƒŒƒ“ƒh
+	real s_trend; // ƒgƒŒƒ“ƒh‚Ì•W€•Î·
+	real s_q; 
 	real<lower=0> a;
 	real<lower=0> b;
 	real<lower=0> c;

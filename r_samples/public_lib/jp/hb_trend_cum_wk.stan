@@ -31,7 +31,7 @@ model {
 
 	cum_trend[1]<-trend[1];
 	for (i in 2:N)
-		cum_trend[i]<-cum_trend[i-1]+trend[i];
+		cum_trend[i]<-cum_trend[i-1]+trend[i]; // —ÝÏ˜a‚É’¼‚·
 
 	for (i in 1:N)
 		q[i]<-y[i]-wk[i]-cum_trend[i];

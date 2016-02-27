@@ -1,0 +1,4 @@
+book,cosmetics,liquor,magazine,stationery,toy
+book,food,imported
+cosmetics,food,liquor,sake,stationery,toy
+book,sake,travel

@@ -15,4 +15,11 @@ par(new = T)
 plot(d1$x, d1$y, pch = 19, col = 'purple',
      xlim = c(-11, 11), ylim = c(-3, 3), xlab = '', ylab = '')
 lines(x, y_pred, type = 'l', col = 'red', lwd = 3)
-legend('bottom', legend = c('True', 'Fitted'), col = c('blue', 'red'), lwd = c(2, 3))
+
+library(e1071)
+fit_svm <- svm(y~x, d1)
+y_pred_svm <- predict(fit_svm, d)
+lines(x, y_pred_svm, type = 'l', col = '#008000', lwd = 3)
+
+legend('bottom', legend = c('True', 'GP', 'SVM'),
+       col = c('blue', 'red', '#008000'), lwd = c(2, 3, 3))

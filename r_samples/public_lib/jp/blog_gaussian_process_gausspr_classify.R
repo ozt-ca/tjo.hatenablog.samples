@@ -1,3 +1,4 @@
+library(kernlab)
 d <- read.csv('https://raw.githubusercontent.com/ozt-ca/tjo.hatenablog.samples/master/r_samples/public_lib/jp/xor_complex_small.txt', sep = ' ')
 summary(d)
 d$label <- as.factor(d$label-1)

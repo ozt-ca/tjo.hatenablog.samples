@@ -27,4 +27,12 @@ plot(d[, -3], pch = 19, cex = 2, col = d$label, xlim = c(-4, 4), ylim = c(-4, 4)
      xlab = '', ylab = '')
 par(new = T)
 contour(px, py, array(out_vec, c(length(px), length(py))),
-        col = 'purple', levels = 0.5, lwd = 3, drawlabels = F)
+        col = 'purple', levels = 0.5, lwd = 5, drawlabels = F)
+
+library(e1071)
+fit_svm <- svm(label~., d)
+out_svm <- predict(fit_svm, newdata = pgrid)
+par(new = T)
+contour(px, py, array(out_svm, c(length(px), length(py))),
+        col = '#008000', levels = 0.5, lwd = 5, drawlabels = F)
+legend('topleft', legend = c('GP', 'SVM'), col = c('purple', '#008000'), lwd = 5)

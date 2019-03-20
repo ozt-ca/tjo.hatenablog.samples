@@ -1,6 +1,7 @@
 # Create a sample data matrix
+seed_prob <- c(0.05, 0.05, 0.8, 0.05, 0.025, 0.025)
 set.seed(101)
-d <- t(rmultinom(100000, 1, c(0.05, 0.05, 0.8, 0.05, 0.025, 0.025)))
+d <- t(rmultinom(100000, 1, seed_prob))
 
 # Set a hyper parameter
 inc <- 1e-4
@@ -42,3 +43,4 @@ for (i in 1:1000){
 }
 plot(res_bin, type = 'l',
      xlab = 'Iteration', ylab = 'Correct answer probability for 100 epochs')
+segments(0, max(seed_prob), 1000, max(seed_prob), col = 'red', lwd = 5, lty = 3)

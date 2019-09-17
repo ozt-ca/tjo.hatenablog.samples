@@ -1,14 +1,22 @@
+# Data preparation
+
 d <- read.csv('sample_marketing.csv')
 d_train <- d[1:91, ]
 d_test <- d[92:100, ]
 dvar <- d_train[, -1]
 dat <- list(N = nrow(d_train), M = ncol(dvar),
             y = d_train$cv, X = dvar)
+
+# Time series modeling with Bayesian
+
 library(rstan)
 rstan_options(auto_write = TRUE)
 options(mc.cores = parallel::detectCores())
 fit <- stan(file = 'sample_marketing_holdout.stan', data = dat,
             iter = 1000, chains = 4)
+
+# Extract samples / parameters, and estimate fitted values
+
 slength <- 2000
 fit.smp <- extract(fit)
 tmp <- density(fit.smp$s_trend)
@@ -42,7 +50,7 @@ matplot(cbind(d_train$cv, pred), type = 'l', lty = 1,
 legend('topleft', legend = c('Data', 'Fitted'),
        lty = 1, lwd = c(2, 3), col = c(1, 2))
 
-## Validation ##
+# Validation
 
 fc_dvar <- d_test[, -1]
 
@@ -63,22 +71,29 @@ for (i in 1:ncol(fc_dvar)) {
 
 validate <- cumsum(trend)[nrow(d_train)] + fc_beta_prod + cumsum(val_trend) + val_season
 
+# Machine learning: Random Forest
+
 library(randomForest)
 d_train.rf <- randomForest(cv~., d_train)
 pred.rf <- predict(d_train.rf, newdata = d_train[, -1])
 validate.rf <- predict(d_train.rf, newdata = d_test[, -1])
 
+# Plotting w/o days
+
 matplot(cbind(d_train$cv, pred, pred.rf), type = 'l', lty = 1,
-        lwd = c(2, 3), ylab = '', xlim = c(0, 100), ylim = c(150, 1050))
+        lwd = c(2, 3, 3), ylab = '', xlim = c(0, 100), ylim = c(150, 1050))
 par(new = T)
 matplot(cbind(d_test$cv, validate, validate.rf), type = 'l', lty = 1,
-        col = c('blue', 'purple', 'orange'),
-        lwd = c(2, 3), ylab = '', xlim = c(-91, 9), ylim = c(150, 1050),
+        col = c('blue', 'purple', '#008000'),
+        lwd = c(2, 3, 3), ylab = '', xlim = c(-91, 9), ylim = c(150, 1050),
         axes = F)
-legend('topleft', legend = c('Data', 'Fitted DLM', 'Fitted RF',
-                             'Actual', 'Forecast', 'Forecast RF'),
-       lty = 1, lwd = c(2, 3), col = c(1, 2, 3, 'purple', 'blue', 'orange'),
+legend('topleft', legend = c('Data', 'Fitted TS', 'Fitted RF',
+                             'Actual', 'Forecast TS', 'Forecast RF'),
+       lty = 1, lwd = rep(c(2, 3, 3), 2),
+       col = c(1, 2, 3, 'purple', 'blue', '#008000'),
        ncol = 2, cex = 0.75)
+
+# RF w/ days
 
 d_day <- cbind(d, rep(c('Mon', 'Tue', 'Wed', 'Thr', 'Fri', 'Sat', 'Sun'), 15)[1:nrow(d)])
 names(d_day)[5] <- 'day'
@@ -88,14 +103,17 @@ day_train.rf <- randomForest(cv~., day_train)
 pred.rfday <- predict(day_train.rf, newdata = day_train[, -1])
 validate.rfday <- predict(day_train.rf, newdata = day_test[, -1])
 
+# Plotting w/ days
+
 matplot(cbind(d_train$cv, pred, pred.rfday), type = 'l', lty = 1,
-        lwd = c(2, 3), ylab = '', xlim = c(0, 100), ylim = c(150, 1050))
+        lwd = c(2, 3, 3), ylab = '', xlim = c(0, 100), ylim = c(150, 1050))
 par(new = T)
 matplot(cbind(d_test$cv, validate, validate.rfday), type = 'l', lty = 1,
-        col = c('blue', 'purple', 'orange'),
-        lwd = c(2, 3), ylab = '', xlim = c(-91, 9), ylim = c(150, 1050),
+        col = c('blue', 'purple', '#008000'),
+        lwd = c(2, 3, 3), ylab = '', xlim = c(-91, 9), ylim = c(150, 1050),
         axes = F)
-legend('topleft', legend = c('Data', 'Fitted DLM', 'Fitted RF w day',
-                             'Actual', 'Forecast', 'Forecast RF w day'),
-       lty = 1, lwd = c(2, 3), col = c(1, 2, 3, 'purple', 'blue', 'orange'),
+legend('topleft', legend = c('Data', 'Fitted TS', 'Fitted RF w day',
+                             'Actual', 'Forecast TS', 'Forecast RF w day'),
+       lty = 1, lwd = rep(c(2, 3, 3), 2),
+       col = c(1, 2, 3, 'purple', 'blue', '#008000'),
        ncol = 2, cex = 0.75)

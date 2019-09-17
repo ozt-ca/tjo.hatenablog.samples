@@ -119,3 +119,28 @@ legend('topleft', legend = c('Data', 'Fitted TS', 'Fitted RF w day',
        lty = 1, lwd = rep(c(2, 3, 3), 2),
        col = c(1, 2, 3, 'blue', 'purple', '#008000'),
        ncol = 2, cex = 0.75)
+
+# Evaluation
+
+library(Metrics)
+rmse(d_test$cv, validate) # Bayesian TS
+rmse(d_test$cv, validate.rf) # RF w/o days
+rmse(d_test$cv, validate.rfday) # RF w/ days
+
+# Plotting w/ trends
+
+matplot(cbind(d_train$cv, pred, pred.rfday, cumsum(trend)), type = 'l', lty = 1,
+        lwd = c(2, 3, 3, 5), ylab = '', xlim = c(0, 100), ylim = c(150, 1050),
+        col = c(1, 2, 3, 'orange'))
+segments(91, 0, 91, 1100, lty = 3, col = 1, lwd = 2)
+par(new = T)
+matplot(cbind(d_test$cv, validate, validate.rfday, cumsum(val_trend) + cumsum(trend)[nrow(d_train)]), type = 'l', lty = 1,
+        col = c('blue', 'purple', '#008000', 'orange'),
+        lwd = c(2, 3, 3, 5), ylab = '', xlim = c(-91, 9), ylim = c(150, 1050),
+        axes = F)
+legend('topleft', legend = c('Data', 'Fitted TS', 'Fitted RF w day',
+                             'Actual', 'Forecast TS', 'Forecast RF w day',
+                             'Trend'),
+       lty = 1, lwd = rep(c(2, 3, 3, 5), 2),
+       col = c(1, 2, 3, 'blue', 'purple', '#008000', 'orange'),
+       ncol = 2, cex = 0.75)

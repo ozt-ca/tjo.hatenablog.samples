@@ -82,6 +82,7 @@ validate.rf <- predict(d_train.rf, newdata = d_test[, -1])
 
 matplot(cbind(d_train$cv, pred, pred.rf), type = 'l', lty = 1,
         lwd = c(2, 3, 3), ylab = '', xlim = c(0, 100), ylim = c(150, 1050))
+segments(91, 0, 91, 1100, lty = 3, col = 1, lwd = 2)
 par(new = T)
 matplot(cbind(d_test$cv, validate, validate.rf), type = 'l', lty = 1,
         col = c('blue', 'purple', '#008000'),
@@ -92,7 +93,6 @@ legend('topleft', legend = c('Data', 'Fitted TS', 'Fitted RF',
        lty = 1, lwd = rep(c(2, 3, 3), 2),
        col = c(1, 2, 3, 'blue', 'purple', '#008000'),
        ncol = 2, cex = 0.75)
-segments(91, 0, 91, 1050, lty = 3, col = 1, lwd = 2)
 
 # RF w/ days
 
@@ -108,6 +108,7 @@ validate.rfday <- predict(day_train.rf, newdata = day_test[, -1])
 
 matplot(cbind(d_train$cv, pred, pred.rfday), type = 'l', lty = 1,
         lwd = c(2, 3, 3), ylab = '', xlim = c(0, 100), ylim = c(150, 1050))
+segments(91, 0, 91, 1100, lty = 3, col = 1, lwd = 2)
 par(new = T)
 matplot(cbind(d_test$cv, validate, validate.rfday), type = 'l', lty = 1,
         col = c('blue', 'purple', '#008000'),
@@ -118,4 +119,3 @@ legend('topleft', legend = c('Data', 'Fitted TS', 'Fitted RF w day',
        lty = 1, lwd = rep(c(2, 3, 3), 2),
        col = c(1, 2, 3, 'blue', 'purple', '#008000'),
        ncol = 2, cex = 0.75)
-segments(91, 0, 91, 1050, lty = 3, col = 1, lwd = 2)

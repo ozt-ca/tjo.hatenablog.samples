@@ -92,6 +92,7 @@ legend('topleft', legend = c('Data', 'Fitted TS', 'Fitted RF',
        lty = 1, lwd = rep(c(2, 3, 3), 2),
        col = c(1, 2, 3, 'blue', 'purple', '#008000'),
        ncol = 2, cex = 0.75)
+segments(91, 0, 91, 1050, lty = 3, col = 1, lwd = 2)
 
 # RF w/ days
 
@@ -117,3 +118,4 @@ legend('topleft', legend = c('Data', 'Fitted TS', 'Fitted RF w day',
        lty = 1, lwd = rep(c(2, 3, 3), 2),
        col = c(1, 2, 3, 'blue', 'purple', '#008000'),
        ncol = 2, cex = 0.75)
+segments(91, 0, 91, 1050, lty = 3, col = 1, lwd = 2)

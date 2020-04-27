@@ -17,7 +17,7 @@ plot(d3$day, dts$time.series[, 2], main = 'Tokyo, daily',
      ylim = c(-10, 230), col = 'blue', lwd = 3)
 par(new = T)
 plot(d3$day, dts$time.series[, 2] + dts$time.series[, 3],
-     main = 'Tokyo, daily',xlab = 'Date', ylab = 'Positive reported',
+     main = 'Tokyo, daily', xlab = 'Date', ylab = 'Positive reported',
      type = 'l', col = 'red', ylim = c(-10, 230))
 legend('topleft', legend = c('Trend', 'Trend + Seasonality'),
        col = c('blue', 'red'), lty = 1, lwd = c(3, 1), ncol = 1)

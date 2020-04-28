@@ -12,12 +12,17 @@ d3 <- left_join(dayseq, d2, by = 'day')
 d3[which(is.na(d3$num)), 2] <- 0
 dts <- stl(ts(as.numeric(d3$num), frequency = 7), s.window = 'per')
 mtitle <- paste0('Tokyo, daily from ', d3$day[1], ' to ', d3$day[nrow(d3)])
+plot(d3$day, d3$num, main = mtitle,
+     xlab = 'Date', ylab = 'Positive reported', type = 'l',
+     ylim = c(-10, 230), col = 'black', lwd = 1)
+par(new = T)
 plot(d3$day, dts$time.series[, 2], main = mtitle,
      xlab = 'Date', ylab = 'Positive reported', type = 'l',
      ylim = c(-10, 230), col = 'blue', lwd = 3)
 par(new = T)
 plot(d3$day, dts$time.series[, 2] + dts$time.series[, 3],
      main = mtitle, xlab = 'Date', ylab = 'Positive reported',
-     type = 'l', col = 'red', ylim = c(-10, 230))
-legend('topleft', legend = c('Trend', 'Trend + Seasonality'),
-       col = c('blue', 'red'), lty = 1, lwd = c(3, 1), ncol = 1)
+     type = 'l', col = 'red', ylim = c(-10, 230), lty = 2)
+legend('topleft', legend = c('Reported', 'Trend', 'Trend + Seasonality'),
+       col = c('black', 'blue', 'red'), lty = c(1, 1, 3),
+       lwd = c(1, 3, 2), ncol = 1)

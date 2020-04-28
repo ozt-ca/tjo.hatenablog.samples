@@ -39,7 +39,7 @@ plot(d3$day, dts$time.series[, 2], main = mtitle,
      xlab = 'Date', ylab = 'Positive reported', type = 'l',
      xlim = xrange, ylim = c(-10, 230), col = 'blue', lwd = 3, lty = 3)
 par(new = T)
-plot(d3$day, dts$time.series[, 2] + dts$time.series[, 3],
+plot(d3$day, dts$time.series[, 2] + dts$time.series[, 1],
      main = mtitle, xlab = 'Date', ylab = 'Positive reported',
      type = 'l', col = 'red', xlim = xrange, ylim = c(-10, 230), lty = 3)
 
@@ -53,7 +53,7 @@ plot(d4$day, dts2$time.series[, 2], main = mtitle,
      xlab = 'Date', ylab = 'Positive reported', type = 'l',
      xlim = xrange, ylim = c(-10, 230), col = 'blue', lwd = 3)
 par(new = T)
-plot(d4$day, dts2$time.series[, 2] + dts2$time.series[, 3],
+plot(d4$day, dts2$time.series[, 2] + dts2$time.series[, 1],
      main = mtitle, xlab = 'Date', ylab = 'Positive reported',
      type = 'l', col = 'red', xlim = xrange, ylim = c(-10, 230))
 

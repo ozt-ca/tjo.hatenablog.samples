@@ -1,3 +1,7 @@
+# Input today's date and reported number
+nday <- '2020-04-29'
+nval <- 47
+
 # Download the raw CSV file
 d <- read.csv('https://stopcovid19.metro.tokyo.lg.jp/data/130001_tokyo_covid19_patients.csv')
 # Extract date, with adding a dummy
@@ -20,7 +24,7 @@ d3[which(is.na(d3$num)), 2] <- 0
 
 # Add the latest value MANUALLY
 d4 <- d3
-d4[(nrow(d3) + 1), ] <- c('2020-04-28', 112) # Here please write down
+d4[(nrow(d3) + 1), ] <- c(nday, nval) # Here please write down
 
 # Model trend and seasonality using stl (loess)
 dts <- stl(ts(as.numeric(d3$num), frequency = 7), s.window = 'per')

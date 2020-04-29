@@ -63,7 +63,7 @@ plot(d4$day, dts2$time.series[, 2] + dts2$time.series[, 1],
 
 legend('topleft',
        legend = c('Reported (prev)', 'Trend (prev)', 'Trend + Seasonality (prev)',
-                  'Reported (now)', 'Trend (now)', 'Trend + Seasonality (now)'),
+                  'Reported (today)', 'Trend (today)', 'Trend + Seasonality (today)'),
        col = c('black', 'blue', 'red', 'black', 'blue', 'red'),
        lty = c(3, 3, 3, 1, 1, 1),
        lwd = c(1, 3, 2, 1, 3, 2), ncol = 1)

@@ -19,6 +19,8 @@ for (i in 1:10){
                   x11 = x^11, x12 = x^12, x13 = x^13, x14 = x^14, x15 = x^15,
                   x16 = x^16, x17 = x^17, x18 = x^18, x19 = x^19, x20 = x^20
   )
+  
+  yl_range = c(min(y) - (max(y) - min(y)) * 0.5, max(y) + (max(y) - min(y)) * 0.5)
 
   d_train <- d[1:(round(0.8 * nrow(d))),]
   d_test <- d[(round(0.8 * nrow(d)) + 1):nrow(d),]
@@ -30,7 +32,7 @@ for (i in 1:10){
   }
   idx <- which(res == min(res))
   fit_best <- lm(y ~ ., d[, 1:(2 + idx)])
-  plot(x, y, type = 'l', xlim = c(0, 360), ylim = c(700, 1500), xlab = '', ylab = '')
+  plot(x, y, type = 'l', xlim = c(0, 360), ylim = yl_range, xlab = '', ylab = '')
   xp <- x_org[1:((i * 30) + 60)]
   newdata = data.frame(x1 = xp, x2 = xp^2, x3 = xp^3, x4 = xp^4,
                        x5 = xp^5, x6 = xp^6, x7 = xp^7, x8 = xp^8,
@@ -39,28 +41,28 @@ for (i in 1:10){
                        x17 = xp^17, x18 = xp^18, x19 = xp^19, x20 = xp^20)
   pred <- predict(fit_best, newdata = newdata[, 1:(2 + idx)])
   par(new = T)
-  plot(xp, pred, type = 'l', col = 'red', lwd = 3, xlim = c(0, 360), ylim = c(700, 1500),
+  plot(xp, pred, type = 'l', col = 'red', lwd = 3, xlim = c(0, 360), ylim = yl_range,
        axes = F, xlab = '', ylab = '')
 }
-plot(x_org[1:300], y_org[1:300], type = 'l', xlim = c(0, 360), ylim = c(700, 1500),
+plot(x_org[1:300], y_org[1:300], type = 'l', xlim = c(0, 360), ylim = yl_range,
      xlab = '', ylab = '')
 par(new = T)
-plot(x_org, pred, type = 'l', col = 'red', lwd = 3, xlim = c(0, 360), ylim = c(700, 1500),
+plot(x_org, pred, type = 'l', col = 'red', lwd = 3, xlim = c(0, 360), ylim = yl_range,
      axes = F, xlab = '', ylab = '')
 par(new = T)
 plot(x_org[301:n], y_org[301:n], type = 'l', col = 'blue', lwd = 3,
-     xlim = c(0, 360), ylim = c(700, 1500), axes = F, xlab = '', ylab = '')
+     xlim = c(0, 360), ylim = yl_range, axes = F, xlab = '', ylab = '')
 legend('bottomleft', legend = c('Data', 'Predict', 'True'), col = c('black', 'red', 'blue'),
        lwd = c(1, 3, 3), ncol = 2, cex = 0.4)
 
 par(mfrow = c(1, 1))
-plot(x_org[1:300], y_org[1:300], type = 'l', xlim = c(0, 360), ylim = c(700, 1500),
+plot(x_org[1:300], y_org[1:300], type = 'l', xlim = c(0, 360), ylim = yl_range,
      xlab = '', ylab = '')
 par(new = T)
-plot(x_org, pred, type = 'l', col = 'red', lwd = 3, xlim = c(0, 360), ylim = c(700, 1500),
+plot(x_org, pred, type = 'l', col = 'red', lwd = 3, xlim = c(0, 360), ylim = yl_range,
      axes = F, xlab = '', ylab = '')
 par(new = T)
 plot(x_org[301:n], y_org[301:n], type = 'l', col = 'blue', lwd = 3,
-     xlim = c(0, 360), ylim = c(700, 1500), axes = F, xlab = '', ylab = '')
+     xlim = c(0, 360), ylim = yl_range, axes = F, xlab = '', ylab = '')
 legend('bottomleft', legend = c('Data', 'Predict', 'True'), col = c('black', 'red', 'blue'),
        lwd = c(1, 3, 3), ncol = 2)

@@ -8,6 +8,7 @@ r_int <- 1000 # Intercept of each random walk
 x <- 1:n # x vector: a basic component of independent variable
 l_range <- 1:300 # Range of learning dataset
 t_range <- 301:360 # Range of test dataset
+dcap <- 20 # Maximum limit of degree: default is 20
 
 q_range <- 101:300 # Range of random seeds: of course you can change this range
 cv <- rep(0, length(q_range)) # Vector for storing results of polynomial fitting with CV
@@ -40,13 +41,13 @@ for (q in q_range){
   idx <- which(res == min(res)) # Choose the best one with the least RMSE
   
   fit_best <- lm(y ~ ., d_train[, 1:(2 + idx)]) # Best polynomial fitting model
-  fit_all <- lm(y ~ ., d_train) # Full polynomial fitting model
+  fit_all <- lm(y ~ ., d_train[, 1:(dcap + 1)]) # Full polynomial fitting model
   
   newdata <- d[t_range, ] # Test dataset, 301:360
   # Prediction by the best model
   pred_best <- predict(fit_best, newdata = newdata[, 1:(2 + idx)])
   # Prediction by the full model
-  pred_all <- predict(fit_all, newdata = newdata)
+  pred_all <- predict(fit_all, newdata = newdata[, 1:(dcap + 1)])
   
   # Store results for each random seed
   cv[q - q_range[1] + 1] <- rmse(pred_best, newdata$y)

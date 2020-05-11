@@ -9,7 +9,7 @@ r_int <- 1000 # Intercept of each random walk
 x <- 1:n # x vector: a basic component of independent variable
 l_range <- 1:359 # Range of learning dataset
 t_range <- 360:360 # Range of test dataset
-dcap <- 6 # Maximum limit of degree: default is 20
+dcap <- 20 # Maximum limit of degree: default is 20
 
 q_range <- 101:300 # Range of random seeds: of course you can change this range
 cv <- rep(0, length(q_range)) # Vector for storing results of polynomial fitting with CV
@@ -75,7 +75,9 @@ for (q in q_range){
   bslt[q - q_range[1] + 1] <- rmse(pred_bs_lt$median, newdata$y)
 }
 
-save.image(paste0('cv_polynom_bsts_random_seeds_',
+paste0('cv_', dcap, 'deg_polynom_bsts_random_seeds_',
+       q_range[1], '_', q_range[length(q_range)], '.RData')
+save.image(paste0('cv_', dcap, 'deg_polynom_bsts_random_seeds_',
                   q_range[1], '_', q_range[length(q_range)], '.RData'))
 
 # Final evaluation

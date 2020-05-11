@@ -92,5 +92,7 @@ for (p in p_range){
          cex = 1.5, ncol = 2)
   segments(l_range[length(l_range)], y_range[1],
            l_range[length(l_range)], y_range[2], col = 'black', lty = 3)
+  segments(d_val$x1[1] - 1, y_range[1],
+           d_val$x1[1] - 1, y_range[2], col = 'black', lty = 3)
 }
 dev.off()

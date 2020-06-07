@@ -26,6 +26,7 @@ d3[which(is.na(d3$num)), 2] <- 0
 d3[(nrow(d3) + 1), ] <- c(nday, nval) # Here please write down
 d3$num <- as.numeric(d3$num)
 
+# Remove duplicates
 d4 <- d3 %>% distinct(day, .keep_all = T)
 
 
@@ -71,7 +72,8 @@ legend('topleft',
 plot(trend, type = 'l', lwd = 2)
 plot(season, type = 'l', lwd = 2)
 
-# Plot for PNG files
+
+# Plot for JPG files
 jpeg(filename = 'covid19_fit_summary.jpg', width = 720, height = 540)
 matplot(cbind(y, pred, cumsum(trend)),
         type = 'l', lty = c(1, 3, 1), lwd = c(1, 2, 3), col = c(1, 2, 4),
@@ -89,8 +91,8 @@ jpeg(filename = 'covid19_fit_season.jpg', width = 720, height = 540)
 plot(season, type = 'l', lwd = 2)
 dev.off()
 
+# Set up a description for reporting on Twitter
 ctrend <- cumsum(trend)
-
 paste0("本日の東京都の報告数は", nval, "名、",
        "二階差分トレンドの直近7日間の推定値は",
        signif(rev(ctrend)[7], 3), ", ",

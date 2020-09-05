@@ -152,7 +152,7 @@ g4 <- shap.plot.dependence(data_long = shap_long_wine,
                            data_int = shap_int_wine,
                            x= "sulphates", y = "volatile_acidity",
                            color_feature = "volatile_acidity")
-gridExtra::grid.arrange(g3, g4, ncol=2)
+gridExtra::grid.arrange(g3, g4, ncol = 2)
 
 # SHAP force plot
 
@@ -161,6 +161,6 @@ shap_values <- shap.values(xgb_model = model_wine, X_train = d_mx[, -12])
 plot_data <- shap.prep.stack.data(shap_contrib = shap_values$shap_score,
                                   top_n = 4, n_groups = 6)
 shap.plot.force_plot(plot_data, zoom_in_location = 500,
-                     y_parent_limit = c(-1.5,1.5))
+                     y_parent_limit = c(-1.5, 1.5))
 
 shap.plot.force_plot_bygroup(plot_data)

@@ -1,6 +1,6 @@
 # Input today's date and reported number
-nday <- '2020-06-07'
-nval <- 14
+nday <- '2020-12-07'
+nval <- 299
 
 # Download the raw CSV file
 d <- read.csv('https://stopcovid19.metro.tokyo.lg.jp/data/130001_tokyo_covid19_patients.csv')
@@ -50,6 +50,16 @@ trend <- rep(0, N)
 for (i in 1:N) {
   tmp <- density(fit.smp$trend[, i])
   trend[i] <- tmp$x[tmp$y == max(tmp$y)]
+}
+trend_h <- rep(0, N)
+for (i in 1:N) {
+  tmp <- fit.smp$trend[, i]
+  trend_h[i] <- quantile(tmp, probs = 0.8)
+}
+trend_l <- rep(0, N)
+for (i in 1:N) {
+  tmp <- fit.smp$trend[, i]
+  trend_l[i] <- quantile(tmp, probs = 0.2)
 }
 season <- rep(0, N)
 for (i in 1:N) {
@@ -117,3 +127,5 @@ paste0("本日の東京都の報告数は", nval, "名、",
        signif(rev(trend)[2], 3), ", ",
        signif(rev(trend)[1], 3), "。"
 )
+
+paste0("東京都の医療リソースの残り容量に関する各指標は画像の通り")

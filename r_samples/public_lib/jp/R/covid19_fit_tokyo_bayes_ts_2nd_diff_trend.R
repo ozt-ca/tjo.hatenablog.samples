@@ -117,6 +117,7 @@ paste0("本日の東京都の報告数は", nval, "名、",
        signif(rev(trend)[2], 3), ", ",
        signif(rev(trend)[1], 3), "。"
 )
+paste0("2020年11月1日以降の年代別推移")
 paste0("東京都の医療リソースの残り容量に関する各指標は画像の通り")
 paste0("使用したRコード・Stanコードは以下の通り https://github.com/ozt-ca/tjo.hatenablog.samples/blob/master/r_samples/public_lib/jp/R/covid19_fit_tokyo_bayes_ts_2nd_diff_trend.R https://github.com/ozt-ca/tjo.hatenablog.samples/blob/master/r_samples/public_lib/jp/R/covid19_tokyo_2nd_trend.stan")
 
@@ -137,13 +138,12 @@ matplot(cbind(da4[da4$age == '20代', 3],
               da4[da4$age == '50代', 3],
               da4[da4$age == '60代', 3],
               da4[da4$age == '70代', 3],
-              da4[da4$age == '80代', 3],
-              da4[da4$age == '90代', 3]),
+              da4[da4$age == '80代', 3]),
         type = 'l', lty = 1, xlab = '', ylab = '',
         main = gtitle)
 legend('topleft',
-       legend = c('20s', '30s', '40s', '50s', '60s', '70s', '80s', '90s'),
-       lty = 1, col = c(1, 2, 3, 4, 5, 6, 'orange', 8), ncol = 2)
+       legend = c('20s', '30s', '40s', '50s', '60s', '70s', '80s'),
+       lty = 1, col = c(1, 2, 3, 4, 5, 6, 'orange'), ncol = 2)
 jpeg(filename = 'covid19_fit_generation.jpg', width = 720, height = 540)
 matplot(cbind(da4[da4$age == '20代', 3],
               da4[da4$age == '30代', 3],
@@ -151,11 +151,10 @@ matplot(cbind(da4[da4$age == '20代', 3],
               da4[da4$age == '50代', 3],
               da4[da4$age == '60代', 3],
               da4[da4$age == '70代', 3],
-              da4[da4$age == '80代', 3],
-              da4[da4$age == '90代', 3]),
+              da4[da4$age == '80代', 3]),
         type = 'l', lty = 1, xlab = '', ylab = '',
         main = gtitle)
 legend('topleft',
-       legend = c('20s', '30s', '40s', '50s', '60s', '70s', '80s', '90s'),
-       lty = 1, col = c(1, 2, 3, 4, 5, 6, 'orange', 8), ncol = 2)
+       legend = c('20s', '30s', '40s', '50s', '60s', '70s', '80s'),
+       lty = 1, col = c(1, 2, 3, 4, 5, 6, 'orange'), ncol = 2)
 dev.off()

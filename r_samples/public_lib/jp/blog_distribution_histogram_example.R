@@ -1,5 +1,5 @@
 d1 <- rnorm(n = 10000, mean = 10, sd = 2)
-d2 <- c(rnorm(n = 5000, mean = 5, sd = 2), rnorm(n = 5000, mean = 15, sd = 2))
+d2 <- c(rnorm(n = 5000, mean = 5, sd = 2), rnorm(n = 5000, mean = 15, sd = 2))[sample(10000, 10000, replace = F)]
 d3 <- rpois(n = 10000, lambda = 10)
 d4 <- rep(c(0, 20), 5000)[sample(10000, 10000, replace = F)]
 

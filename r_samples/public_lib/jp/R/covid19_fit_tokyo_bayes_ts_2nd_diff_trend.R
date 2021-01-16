@@ -1,6 +1,6 @@
 # Input today's date and reported number
-nday <- '2020-12-19'
-nval <- 736
+nday <- '2021-01-16'
+nval <- 1809
 
 # Download the raw CSV file
 d <- read.csv('https://stopcovid19.metro.tokyo.lg.jp/data/130001_tokyo_covid19_patients.csv')
@@ -33,7 +33,7 @@ d4 <- d3 %>% distinct(day, .keep_all = T)
 # Set up Stan env
 library(rstan)
 options(mc.cores = parallel::detectCores())
-rstan_options(auto_write = TRUE)
+# rstan_options(auto_write = TRUE)
 
 # Data as a list
 N <- nrow(d4)
@@ -143,7 +143,7 @@ matplot(cbind(da4[da4$age == '20代', 3],
         main = gtitle)
 legend('topleft',
        legend = c('20s', '30s', '40s', '50s', '60s', '70s', '80s'),
-       lty = 1, col = c(1, 2, 3, 4, 5, 6, 'orange'), ncol = 2)
+       lty = 1, col = c(1, 2, 3, 4, 5, 6, 7), ncol = 2)
 jpeg(filename = 'covid19_fit_generation.jpg', width = 720, height = 540)
 matplot(cbind(da4[da4$age == '20代', 3],
               da4[da4$age == '30代', 3],
@@ -156,5 +156,5 @@ matplot(cbind(da4[da4$age == '20代', 3],
         main = gtitle)
 legend('topleft',
        legend = c('20s', '30s', '40s', '50s', '60s', '70s', '80s'),
-       lty = 1, col = c(1, 2, 3, 4, 5, 6, 'orange'), ncol = 2)
+       lty = 1, col = c(1, 2, 3, 4, 5, 6, 7), ncol = 2)
 dev.off()

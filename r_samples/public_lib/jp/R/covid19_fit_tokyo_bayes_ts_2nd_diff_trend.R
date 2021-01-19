@@ -1,6 +1,6 @@
 # Input today's date and reported number
-nday <- '2021-01-17'
-nval <- 1592
+nday <- '2021-01-19'
+nval <- 1240
 
 # Download the raw CSV file
 d <- read.csv('https://stopcovid19.metro.tokyo.lg.jp/data/130001_tokyo_covid19_patients.csv')

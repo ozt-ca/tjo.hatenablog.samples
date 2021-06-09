@@ -28,13 +28,19 @@ dgrid3 <- cbind(pgrid, out3)
 p <- ggplot(data = d, mapping = aes(x = x, y = y)) +
   geom_point(mapping = aes(color = label)) +
   scale_color_hue() +
-  theme(legend.position = 'none')
+  theme(legend.position = 'none',
+        axis.text.x = element_blank(),
+        axis.text.y = element_blank()) +
+  labs(x = NULL, y = NULL)
 print(p)
 
 p <- ggplot(data = d, mapping = aes(x = x, y = y)) +
   geom_point(mapping = aes(color = label)) +
   scale_color_hue() +
-  theme(legend.position = 'none') +
+  theme(legend.position = 'none',
+        axis.text.x = element_blank(),
+        axis.text.y = element_blank()) +
+  labs(x = NULL, y = NULL) +
   geom_contour(data = dgrid1,
                mapping = aes(x = x, y = y, z = as.numeric(out1)))
 print(p)
@@ -42,7 +48,10 @@ print(p)
 p <- ggplot(data = d, mapping = aes(x = x, y = y)) +
   geom_point(mapping = aes(color = label)) +
   scale_color_hue() +
-  theme(legend.position = 'none') +
+  theme(legend.position = 'none',
+        axis.text.x = element_blank(),
+        axis.text.y = element_blank()) +
+  labs(x = NULL, y = NULL) +
   geom_contour(data = dgrid2,
                mapping = aes(x = x, y = y, z = as.numeric(out2)))
 print(p)
@@ -50,7 +59,10 @@ print(p)
 p <- ggplot(data = d, mapping = aes(x = x, y = y)) +
   geom_point(mapping = aes(color = label)) +
   scale_color_hue() +
-  theme(legend.position = 'none') +
+  theme(legend.position = 'none',
+        axis.text.x = element_blank(),
+        axis.text.y = element_blank()) +
+  labs(x = NULL, y = NULL) +
   geom_contour(data = dgrid3,
                mapping = aes(x = x, y = y, z = as.numeric(out3)))
 print(p)

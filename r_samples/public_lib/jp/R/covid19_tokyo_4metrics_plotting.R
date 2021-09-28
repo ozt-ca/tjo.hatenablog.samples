@@ -46,7 +46,7 @@ p <- ggplot(data = df,
   geom_line(stat = 'identity', size = 1) +
   scale_colour_brewer(palette = 'Dark2') +
   scale_x_date(breaks = function(x) seq.Date(from = df[1, 1],
-                                             to = max(x), by = '45 days'),
+                                             to = max(x), by = '1 month'),
                date_labels = '%y-%m-%d') +
   ggtitle(label = 'Normalized values of 4 COVID metrics in Tokyo') +
   theme(plot.title = element_text(size = 28, hjust = 0.5),

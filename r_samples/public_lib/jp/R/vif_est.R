@@ -1,11 +1,14 @@
 # Computing Variance Inflation Factors for a single dataset
+# Simple implementation: just run this script to use the function below
+#
+# Arguments
 # d: data frame
-# y_idx: index of dependent (target) variable which can be omitted
+# idx: index of dependent (target) variable which can be omitted
 
-vif_est <- function(d, y_idx = NULL){
+vif <- function(d, idx = NULL){
   d1 <- d
-  if (!is.null(y_idx)){
-    d1 <- d[, -y_idx]
+  if (!is.null(idx)){
+    d1 <- d[, -idx]
   }
   dnam <- names(d1)
   m <- ncol(d1)

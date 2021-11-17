@@ -2,4 +2,4 @@
 
 This is the codebase for analysis of handmade GM counter by Dr. Satoru Ozaki, who is the father of Takashi J. Ozaki ([ozt-ca](https://github.com/ozt-ca/)).
 
-He learns Python coding at 75 years old, and even he gave an academic talk with the Python codes and related materials. Currently, he has been diagnosed as having terminal cancer.
+He learns Python coding at 75 years old, and even he gave an academic talk with the Python codes and related materials. Currently (Nov 17 in 2021), he has been diagnosed as having terminal cancer.

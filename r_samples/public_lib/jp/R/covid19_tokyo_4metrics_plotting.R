@@ -12,6 +12,8 @@ d1[, 2] <- tmp1
 d1[, 5] <- tmp2
 names(d1) <- c('day', 'positive', 'medium', 'severe', 'dead')
 
+d1$positive[363] <- 24
+
 dn <- d1
 dn[, -1] <- apply(dn[, -1], 2, scale)
 dn2 <- dn
@@ -56,3 +58,10 @@ p <- ggplot(data = df,
         axis.text.y = element_text(size = 12)) +
   labs(x = 'Date', y = 'Normalized value')
 print(p)
+
+positive <- stl(ts(d1$positive, frequency = 7),
+                s.window = 'per')$time.series[, 2]
+positive
+pos_detail <- stl(ts(d1$positive, frequency = 7),
+                  s.window = 'per')
+plot(pos_detail)

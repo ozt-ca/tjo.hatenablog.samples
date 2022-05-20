@@ -2,6 +2,8 @@
 ## DNN ##
 #########
 
+t <- proc.time()
+
 # Large dataset
 
 d <- read.csv('https://github.com/ozt-ca/tjo.hatenablog.samples/raw/master/r_samples/public_lib/jp/xor_complex_large.txt', header = T, sep = '\t')
@@ -111,10 +113,14 @@ contour(px, py, array(pred_class, dim = c(length(px), length(py))),
         xlim = c(-4, 4), ylim = c(-4, 4), levels = 0.5, drawlabels = F,
         col = 'purple', lwd = 5)
 
+(dnn_t <- proc.time() - t)
+
 
 #########
 ## SVM ##
 #########
+
+t <- proc.time()
 
 # Large dataset
 
@@ -179,3 +185,5 @@ par(new = T)
 contour(px, py, array(pred_class, dim = c(length(px), length(py))),
         xlim = c(-4, 4), ylim = c(-4, 4), levels = 0.5, drawlabels = F,
         col = 'purple', lwd = 5)
+
+(svm_t <- proc.time() - t)

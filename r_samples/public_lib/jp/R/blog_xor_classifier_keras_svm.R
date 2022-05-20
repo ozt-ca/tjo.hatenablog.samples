@@ -4,7 +4,7 @@
 
 # Large dataset
 
-d <- read.csv('xor_complex_large.txt', header = T, sep = '\t')
+d <- read.csv('https://github.com/ozt-ca/tjo.hatenablog.samples/raw/master/r_samples/public_lib/jp/xor_complex_large.txt', header = T, sep = '\t')
 x_train <- as.matrix(d[, -3])
 y_train <- as.matrix(d[, 3]) - 1
 
@@ -40,7 +40,7 @@ contour(px, py, array(pred_class, dim = c(length(px), length(py))),
 
 # Medium dataset
 
-d <- read.csv('xor_complex_medium.txt', header = T, sep = '\t')
+d <- read.csv('https://github.com/ozt-ca/tjo.hatenablog.samples/raw/master/r_samples/public_lib/jp/xor_complex_medium.txt', header = T, sep = '\t')
 x_train <- as.matrix(d[, -3])
 y_train <- as.matrix(d[, 3]) - 1
 
@@ -77,7 +77,7 @@ contour(px, py, array(pred_class, dim = c(length(px), length(py))),
 
 # Small dataset
 
-d <- read.csv('xor_complex_small.txt', header = T, sep = ' ')
+d <- read.csv('https://github.com/ozt-ca/tjo.hatenablog.samples/raw/master/r_samples/public_lib/jp/xor_complex_small.txt', header = T, sep = ' ')
 x_train <- as.matrix(d[, -3])
 y_train <- as.matrix(d[, 3]) - 1
 
@@ -118,7 +118,7 @@ contour(px, py, array(pred_class, dim = c(length(px), length(py))),
 
 # Large dataset
 
-d <- read.csv('xor_complex_large.txt', header = T, sep = '\t')
+d <- read.csv('https://github.com/ozt-ca/tjo.hatenablog.samples/raw/master/r_samples/public_lib/jp/xor_complex_large.txt', header = T, sep = '\t')
 d[, 3] <- d[, 3] - 1
 d[, 3] <- as.factor(d[, 3])
 
@@ -139,7 +139,7 @@ contour(px, py, array(pred_class, dim = c(length(px), length(py))),
 
 # Medium dataset
 
-d <- read.csv('xor_complex_medium.txt', header = T, sep = '\t')
+d <- read.csv('https://github.com/ozt-ca/tjo.hatenablog.samples/raw/master/r_samples/public_lib/jp/xor_complex_medium.txt', header = T, sep = '\t')
 d[, 3] <- d[, 3] - 1
 d[, 3] <- as.factor(d[, 3])
 
@@ -161,7 +161,7 @@ contour(px, py, array(pred_class, dim = c(length(px), length(py))),
 
 # Small dataset
 
-d <- read.csv('xor_complex_small.txt', header = T, sep = ' ')
+d <- read.csv('https://github.com/ozt-ca/tjo.hatenablog.samples/raw/master/r_samples/public_lib/jp/xor_complex_small.txt', header = T, sep = ' ')
 d[, 3] <- d[, 3] - 1
 d[, 3] <- as.factor(d[, 3])
 

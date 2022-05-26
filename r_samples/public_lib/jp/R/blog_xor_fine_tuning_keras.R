@@ -36,6 +36,7 @@ contour(px, py, array(pred_class, dim = c(length(px), length(py))),
 
 unfreeze_weights(model, from = 2)
 
+
 # Small dataset: fine-tuned
 d <- read.csv('https://github.com/ozt-ca/tjo.hatenablog.samples/raw/master/r_samples/public_lib/jp/xor_complex_small.txt', header = T, sep = ' ')
 x_train <- as.matrix(d[, -3])
@@ -55,6 +56,9 @@ par(new = T)
 contour(px, py, array(pred_class, dim = c(length(px), length(py))),
 xlim = c(-4, 4), ylim = c(-4, 4), levels = 0.5, drawlabels = F,
 col = 'purple', lwd = 5)
+
+rm(model)
+
 
 # Small dataset: raw model
 

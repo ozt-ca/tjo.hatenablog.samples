@@ -18,3 +18,6 @@ car::vif(d1.lm)
 d1.cv.glmnet <- glmnet::cv.glmnet(as.matrix(d1[, -13]), as.matrix(d1[, 13]),
                                  family = 'gaussian', alpha = 1)
 coef(d1.cv.glmnet, s = d1.cv.glmnet$lambda.min)
+
+cv::cv(d.lm)
+cv::cv(d1.lm)

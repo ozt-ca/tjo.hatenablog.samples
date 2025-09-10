@@ -70,10 +70,10 @@ print(car::vif(model_multicol))
 
 merged_data <- data.frame(y = multicol_data$y,
                           x1 = multicol_data$x1,
-                          x2 = multicol_data$x2 + multicol_data$x6,
+                          x2 = (multicol_data$x2 + multicol_data$x6) / 2,
                           x3 = multicol_data$x3,
                           x4 = multicol_data$x4,
-                          x5 = multicol_data$x5 + multicol_data$x7)
+                          x5 = (multicol_data$x5 + multicol_data$x7) / 2)
 summary(lm(y ~., merged_data))
 car::vif(lm(y ~., merged_data))
 
